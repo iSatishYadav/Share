@@ -8,8 +8,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="scripts/qrcode.min.js"></script>
     <style>
-        .center,
-        .center>img {
+        .text {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+        img {
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -20,7 +24,7 @@
 <body>
     <div class="center" id="qrcode">
     </div>
-    <div style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" id="message">
+    <div id="message" class="text">
         Add this page to bookmark
     </div>
     <script>
@@ -46,11 +50,14 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const parsedUrl = new URL(window.location);
-            console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
-            console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
+            var title = parsedUrl.searchParams.get('title');
+            console.log('Title shared: ' + title);
+            var text = parsedUrl.searchParams.get('text');
+            console.log('Text shared: ' + text);
             var url = parsedUrl.searchParams.get('url');
             console.log('URL shared: ' + url);
-            if (url) {
+            var share = url || text || title;
+            if (share) {
                 document.getElementById('message').innerText = url;
                 makeCode(parsedUrl.searchParams.get('url'));
             }
