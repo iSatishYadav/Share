@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v4";
+const CACHE_NAME = "cache-v1";
 const ASSET_TO_CACHE = [
     "index.html",
     "scripts/qrcode.min.js",
