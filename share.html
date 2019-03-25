@@ -2,10 +2,6 @@
 <html>
 
 <head>
-    <title>Share URLs via QR Code</title>
-    <link rel="manifest" href="./manifest.json" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="scripts/qrcode.min.js"></script>
     <style>
         img {
@@ -19,23 +15,8 @@
 <body>
     <div id="qrcode">
     </div>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('sw.js').then(function (registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
-
     <script type="text/javascript">
         var qrcode = new QRCode(document.getElementById("qrcode"));
-
         function makeCode(text) {
             qrcode.makeCode(text);
         }
@@ -50,3 +31,5 @@
 
     </script>
 </body>
+
+</html>
