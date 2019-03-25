@@ -7,17 +7,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <input id="text" type="text" value="http://jindo.dev.naver.com/collie" style="width:80%" />
-    <br />
-    <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-
+    <div id="qrcode">
+    </div>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                navigator.serviceWorker.register('sw.js').then(function (registration) {
                     // Registration was successful
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }, function (err) {
@@ -33,30 +38,17 @@
             width: 100,
             height: 100
         });
-        var input = document.getElementById("text");
 
         function makeCode(text) {
-            // var elText = document.getElementById("text");
             qrcode.makeCode(text);
         }
-
-        makeCode(input.value);
-
-        input.addEventListener('blue', function () {
-            var input = document.getElementById("text");
-            makeCode(input.value);
-        });
-
-        input.addEventListener('keydown', function () {
-            var input = document.getElementById("text");    
-            makeCode(input.value);
-        });
 
         window.addEventListener('DOMContentLoaded', () => {
             const parsedUrl = new URL(window.location);
             console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
             console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
             console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
+            makeCode(parsedUrl.searchParams.get('url'));
         });
 
     </script>
