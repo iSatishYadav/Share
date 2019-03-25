@@ -19,7 +19,10 @@
 
 <body>
     <div class="center" id="qrcode">
-    </div>    
+    </div>
+    <div style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" id="message">
+        Add this page to bookmark
+    </div>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -45,8 +48,12 @@
             const parsedUrl = new URL(window.location);
             console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
             console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
-            console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
-            makeCode(parsedUrl.searchParams.get('url'));
+            var url = parsedUrl.searchParams.get('url');
+            console.log('URL shared: ' + url);
+            if (url) {
+                document.getElementById('message').innerText = url;
+                makeCode(parsedUrl.searchParams.get('url'));
+            }
         });
 
     </script>
