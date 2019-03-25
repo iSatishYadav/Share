@@ -58,8 +58,8 @@
             console.log('URL shared: ' + url);
             var share = url || text || title;
             if (share) {
-                document.getElementById('message').innerText = url;
-                makeCode(parsedUrl.searchParams.get('url'));
+                document.getElementById('message').innerText = share;
+                makeCode(share);
             }
         });
 
