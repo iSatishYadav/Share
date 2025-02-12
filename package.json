@@ -10,6 +10,6 @@
   "license": "MIT",
   "devDependencies": {
     "http-server": "^0.11.1",
-    "workbox-cli": "^7.0.0"
+    "workbox-cli": "^7.3.0"
   }
 }
